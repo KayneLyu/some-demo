@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body,
+  html {
+    width: 100%;
+    height: 100%;
+    background-color: #e7e7e7;
+  }
+
+  .container {
+    position: relative;
+    margin-top: 100px;
+  }
+
+  .turnTableContainer,
+  .pointer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+  }
+
+  .turnTable {
+    /* animation: rotateMove 3s 1 forwards;
+      transition-timing-function:ease-out; */
+    animation-name: rotateMove;
+    animation-duration: 5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+  }
+
+  img {
+    width: 300px;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="turnTableContainer">
+      <img src="./images/prizes.png" alt="" class="turnTable" />
+    </div>
+    <img src="./images/pointer.png" alt="" class="pointer" />
+  </div>
+
+  <script>
+    const turnTable = document.querySelector(".turnTable");
+    const myFn = () => {
+      setTimeout(() => {
+        window.location.href = "formList.html";
+      }, 10000);
+    };
+    const turnDeg = 1800;
+    const endDeg = 280;
+    const rotateNode = document.styleSheets[0];
+    setTimeout(() => {
+      rotateNode.insertRule(`@keyframes rotateMove {
+        0% {
+        transform: rotate(0deg);
+        left:;
+      }
+      100% {
+        transform: rotate(${turnDeg + endDeg}deg);
+        left:;
+      }
+        }`);
+    }, 2000);
+    turnTable.addEventListener("webkitAnimationEnd", myFn);
+  </script>
+</body>
+
+</html>

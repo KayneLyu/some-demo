@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>match</title>
+  </head>
+  <body>
+    <script>
+      const str = "comment_text=cool&replied_to_comment_id=";
+      const getQuery = str.match(/comment_text=(.*)&replied/);
+      const query = getQuery[1];
+      const queryLeft = str.match(/(.*)comment_text=/)[0];
+      const queryRight = str.match(/&replied(.*)/)[0];
+      // const query = decodeURIComponent(getQuery[1]);
+
+      const getText =
+        "source_type=library&caption=%E5%A4%AA%E7%88%B1%E4%BA%86%EF%BC%81&upload_id=1626665695511&usertags=&custom_accessibility_caption=&disable_comments=0";
+      const query2 = getText.match(/&caption=(.*)&upload_id/);
+      const query3 = getText.match(/&upload_id(.*)/);
+      console.log("-----", query2, query3);
+    </script>
+  </body>
+</html>

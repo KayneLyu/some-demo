@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //通过window对象的indexedDB属性，创建IDB实例
+    let dataBase = window.indexedDB;
+
+    //调用open方法创建或打开指定数据库实例
+    //open方法至少接收一个参数：指定数据库的名称。
+    //另外也可接收一个对象作为可选参数：
+    //{vesion--数据库版本，storage--是否永久存储（'permanent'：永久（缺省值），'temporary'：临时）}
+    let request = dataBase.open('myDB');
+
+    //实例方法调用失败时执行：
+    request.onerror = e => console.log('调用失败');
+    //实例方法调用成功时执行：
+    request.onsuccess = e => console.log('调用成功');
+
+    let db = null;
+
+    //实例升级时执行onupgradeneeded方法
+    //此处定义表的基本结构
+    request.onupgradeneeded = e => {
+      db = event.target.result; //提取IDBobjectStore
+
+      //createObjectStore方法用于创建一个存储空间（可以看做是一张表），接收两个参数：
+      //第一个参数：存储空间名
+      //第二个参数：{ 主键字段名、是否自增 }
+      let objectStore = db.createObjectStore('myTable', { keyPath: 'id', autoIncrement: true });
+
+      //createIndex用于创建表索引，接收三个参数：
+      //第一个参数：索引名
+      //第二个参数：索引在表中对应的名称
+      //第三个参数：{ 是否唯一 }
+      objectStore.createIndex('name', 'name', { unique: false });
+    };
+
+    //新增数据
+    request.onsuccess = e => {
+      db = event.target.result;
+
+      //transaction方法用于创建事务，indexedDB的增删改查都在其中进行
+      //transaction接收两个参数：
+      //第一个参数：要操作的表名
+      //第二个参数：操作权限:"readonly"只读、"readwrite"读写或"versionchange"版本变更
+      let transaction = db.transaction(['myTable'], 'readwrite');
+
+      //通过事务访问目标表
+      let store = transaction.objectStore('myTable');
+
+      store.add({ name: '老王', age: 49 });
+      store.add({ name: '小王', age: 23 });
+    };
+  </script>
+</body>
+
+</html>

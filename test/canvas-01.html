@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>canvas</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      // 设置粗细
+      ctx.lineWidth = 3;
+      // 设置线条颜色
+      ctx.strokeStyle = "red";
+      // 起点 终点 中间点
+      ctx.moveTo(100, 100);
+      ctx.lineTo(300, 300);
+      ctx.stroke();
+      ctx.closePath();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VUE判断JS运行环境</title>
+  </head>
+  <body>
+    <script>
+
+      //判断是否在浏览器运行
+      const inBrowser = typeof window !== undefined;
+      //获取浏览器的 userAgent
+      const UA = inBrowser && window.navigator.userAgent.toLowerCase();
+      console.log('UA',UA);
+      //判断浏览器内核 trident
+      const isIE = UA && /msie|trident/.test(UA);
+      const isIE9 = UA && UA.indexOf("msie 9.0") > 0;
+      const isEdge = UA && UA.indexOf("edge/") > 0;
+    //   const isAndroid =
+    //     (UA && UA.indexOf("android") > 0) || weexPlatform === "android";
+    //   const isIOS =
+    //     (UA && /iphone|ipad|ipod|ios/.test(UA)) || weexPlatform === "ios";
+
+      //判断浏览器内核 chrome
+      const isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
+      const isPhantomJS = UA && /phantomjs/.test(UA);
+      const isFF = UA && UA.match(/firefox\/(\d+)/);
+    </script>
+  </body>
+</html>

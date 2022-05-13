@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+    .container {
+      position: relative;
+      margin-top: 50px;
+      width: 80%;
+      left: 50%;
+      /* padding: 0 100px; */
+      transform: translateX(-50%);
+    }
+    .inputItem {
+      /* width: 300px; */
+      margin-top: 10px;
+    }
+    .phoneCode {
+      width: 50%;
+    }
+    p {
+      text-align: left;
+      color: #333;
+      font-size: 12px;
+    }
+    input {
+      box-sizing: border-box;
+      height: 40px;
+      margin-top: 5px;
+      width: 100%;
+      border: 1px solid #e5e5e5;
+      padding-left: 5px;
+      border-radius: 5px;
+    }
+    .phoneCodeArea {
+      display: flex;
+    }
+    button {
+      flex: 1;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      background-color: #f03d3c;
+    }
+    .getCode {
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="inputItem">
+        <p>收件人姓名</p>
+        <input type="text" placeholder="收件人姓名" />
+      </div>
+      <div class="inputItem">
+        <p>手机号码</p>
+        <input type="text" placeholder="收件人姓名" />
+      </div>
+      <div class="inputItem">
+        <p>手机验证码</p>
+        <div class="phoneCodeArea">
+          <input type="text" placeholder="收件人姓名" class="phoneCode" />
+          <button class="getCode">获取验证码</button>
+        </div>
+      </div>
+      <div class="inputItem">
+        <p>选择地区</p>
+        <input type="text" placeholder="省份" />
+        <div>
+          <input type="text" placeholder="城市" />
+        </div>
+      </div>
+      <div class="inputItem">
+        <p>详细地址</p>
+        <input type="text" placeholder="例如xx街道xx号" />
+      </div>
+      <button style="width: 100%; margin-top: 10px;">提 交</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>格式化时间</title>
+</head>
+
+<body>
+  <div class="initDate"></div>
+  <div class="initDate2"></div>
+  <script>
+    //获取时间戳/UTC标准时间
+    // const date = new Date().getTime()
+    const date = 1642156686000
+    //内置Intl对象的DateTimeFormat方法
+    const getDate = new Intl.DateTimeFormat('cn-US-u-ca-iso8601-hc-h24', { dateStyle: 'long' }).format(date)
+
+    const initDate = document.querySelector('.initDate')
+    const initDate2 = document.querySelector('.initDate2')
+    const getDate2 = new Intl.DateTimeFormat('zh-US-u-ca-iso8601-hc-h24', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).format(date).replace(/\//g, '-')
+    console.log(getDate2, getDate);
+    initDate2.innerHTML = getDate + ' ' + new Intl.DateTimeFormat('zh', { timeStyle: 'medium', hour12: false }).format(new Date())
+    // setInterval(() => {
+    //   const getTime = new Intl.DateTimeFormat('cn-US-u-ca-iso8601', { timeStyle: 'medium', hour12: false }).format(new Date())
+    //   initDate2.innerHTML = getDate + ' ' + getTime
+    // }, 1000);
+    initDate.innerHTML = getDate2
+
+
+   function formatTime(time) {
+      if (time.toString().length === 10) {
+        time *= 1000
+      }
+      const getDate = new Intl.DateTimeFormat('zh-US-u-ca-iso8601-hc-h24', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).format(time).replace(/\//g, '-')
+      return getDate
+    }
+    
+    console.log(formatTime(1642732490))
+  </script>
+</body>
+
+</html>

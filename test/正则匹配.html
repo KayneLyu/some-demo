@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>正则匹配</title>
+</head>
+
+<body>
+  <script>
+    let str =
+      "cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&dm_users=false&include_groups=true&include_inbox_timelines=true&include_ext_media_color=true&supports_reactions=true&text=1111&conversation_id=1398082706240536576-1402451663873470466&recipient_ids=false&request_id=32c5f380-d409-11eb-aa15-d1a8086c8615&ext=mediaColor,altText,mediaStats,highlightedLabel";
+    // const getQuery = str.match(/&text=(.*)/);
+    ("cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&dm_users=false&include_groups=true&include_inbox_timelines=true&include_ext_media_color=true&supports_reactions=true");
+    const getQuery = str.match(/(.*)&text=/)[0];
+    const Query = str.match(/&conversation_id=(.*)/)[0];
+    console.log("-----------", getQuery);
+    console.log("-----------", Query);
+
+    let src =
+      "https://twitter.com/search?q=%E9%83%AD%E6%96%87%E8%B4%B5&src=typed_query";
+
+    let res = decodeURIComponent(src).match(/q=(\S*)&/)[1];
+
+    console.log("$$$$$", res);
+
+    var verify_code =
+      "http://localhost:8080/pages/admin/order_cancellation/index?verify_code=20348287";
+    //   console.log(verify_code.match(/http://localhost:8080(\S*)verify_code=/)[1])
+
+    console.log(`%c try hard!`, "color:red;font-size:100px;font-weight:700;")
+  </script>
+</body>
+
+</html>

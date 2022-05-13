@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<style>
+  ul {
+    border: 1px solid pink;
+  }
+</style>
+
+<body>
+  <div>
+    <!-- 头部 -->
+    <div>视觉焦点</div>
+    <!-- 图片文字 -->
+    <ul>
+      <li>
+        <img src="" alt="" />
+        <p>xxx</p>
+      </li>
+      <li>
+        <img src="" alt="" />
+        <p>xxx</p>
+      </li>
+      <li>
+        <img src="" alt="" />
+        <p>xxx</p>
+      </li>
+    </ul>
+    <!-- 新闻标题 -->
+    <ul>
+      <li>xxx</li>
+      <li>xxx</li>
+      <li>xxx</li>
+      <li>xxx</li>
+    </ul>
+  </div>
+  <script>
+    /**
+     * @param 依次 为 总额 期数 每月还款
+     * @return shouxufei 总手续费
+    */
+    const taoxian = (total, month, repay) => {
+      let shouxufei = 0;
+      for (let i = 0; i <= month; i++) {
+        const everyMonth = (total - (repay * i)) * 0.006
+        console.log('******', everyMonth);
+        if (everyMonth < 0 || i == month) {
+          return { shouxufei, i }
+        }
+        shouxufei += everyMonth
+      }
+    }
+    console.log('...', taoxian(100000, 24, 8000));
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .test {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  .clickBox {
+    width: 50px;
+    height: 20px;
+    background-color: skyblue;
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    margin-left: 30px;
+    border-style: solid;
+    border-width: 15px;
+    transform: translateY(50%) rotate(-45deg);
+    box-shadow: 3px -3px 5px #333;
+    border-color: pink pink transparent transparent;
+  }
+
+  .erweima {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 10px #333;
+    background-color: blue;
+  }
+
+  /* .erweima::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px;
+  } */
+
+  .pic {
+    display: none;
+  }
+</style>
+
+<body>
+  <div class="test">
+    <div class="clickBox">
+
+    </div>
+    <div class="pic">
+      <div class="triangle"></div>
+      <div class="erweima"></div>
+    </div>
+  </div>
+
+
+  <script>
+    const hoverBox = document.querySelector('.clickBox');
+    const pic = document.querySelector('.pic');
+
+    console.log('123', hoverBox);
+    const showPic = () => {
+      console.log('123');
+
+      pic.style.display = 'block'
+    }
+    const hidePic = () => {
+      pic.style.display = 'none'
+    }
+    hoverBox.onmouseover = showPic
+    hoverBox.onmouseout = hidePic
+  </script>
+</body>
+
+</html>

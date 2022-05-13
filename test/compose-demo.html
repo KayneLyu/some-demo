@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>compose函数</title>
+</head>
+
+<body>
+  <script>
+    function words(str) {
+      return String(str).toLowerCase().split(/\s|\b/).filter(function alpha(v) {
+        return /^[\w]+$/.test(v);
+      });
+    }
+    function unique(list) {
+      var uniqList = [];
+      for (let i = 0; i < list.length; i++) {
+        if (uniqList.indexOf(list[i]) === -1) {
+          uniqList.push(list[i]);
+        }
+      }
+      return uniqList;
+    }
+
+    let text = "To compose two functions together 好的";
+
+    function compose2(fn2, fn1) {
+      return function composed(origValue) {
+        return fn2(fn1(origValue));
+      };
+    }
+    // var wordsUsed = unique(words(text));
+
+    // ES6 箭头函数形式写法
+    // var compose2 = (fn2, fn1) => origValue => fn2(fn1(origValue));
+    const uniqueWords = compose2(unique, words)
+
+    console.log(uniqueWords(text))
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>变量转字符串</title>
+  </head>
+  <body>
+    <script>
+      console.log(String(null)); // null
+      console.log(JSON.stringify(null)); // null
+
+      console.log(String(undefined)); // undefined 这里是字符串
+      console.log(JSON.stringify(undefined)); // undefined 这里是变量
+
+      console.log(String("abc")); // abc
+      console.log(JSON.stringify("abc")); // "abc"
+
+      console.log(String({ key: "value" })); // [object Object]
+      console.log(JSON.stringify({ key: "value" })); // {"key":"value"}
+
+      console.log(String([1, 2, 3])); // 1,2,3
+      console.log(JSON.stringify([1, 2, 3])); // [1,2,3]
+
+      const obj1 = {
+        title: "devpoint",
+        toString() {
+          return "obj";
+        },
+      };
+      console.log(String(obj1)); // obj
+      console.log(JSON.stringify(obj1)); // {"title":"devpoint"}
+
+      // 重写toString
+      function isPlainObject(obj) {
+        return Object.prototype.toString.call(obj) === "[object Object]";
+      }
+      function toString(val) {
+        if (val === null || val === undefined) return "";
+        if (Array.isArray(val)) return JSON.stringify(val);
+        if (isPlainObject(val) && val.toString === Object.prototype.toString)
+          return JSON.stringify(val);
+        return String(val);
+      }
+
+      const obj = {
+        title: "devpoint",
+        toString() {
+          return "obj";
+        },
+      };
+      console.log(toString(obj)); // obj
+      console.log(toString([1, 2, 3])); // [1, 2, 3]
+      console.log(toString(undefined)); // ""
+      console.log(toString(null)); // ""
+      console.log(typeof toString(undefined));
+    </script>
+  </body>
+</html>
